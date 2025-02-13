@@ -1,16 +1,15 @@
 import { View, Text, TextInput, Button, Image, Pressable } from "react-native";
 import React from "react";
+import logo from "../../../assets/logo.png";
 
 const index = () => {
   return (
     <View className="h-full bg-primaryBg ">
       <View className="flex  flex-col justify-around h-full mx-3">
-        <View>
+        <View className="w-full flex items-center justify-center">
           <Image
-            source={{
-              uri: "https://upload.wikimedia.org/wikipedia/commons/thumb/2/2a/Instagram_logo.svg/2560px-Instagram_logo.svg.png",
-            }}
-            style={{ width: "100%", height: 140, objectFit: "cover" }}
+            source={logo}
+            style={{ width: 100, height: 80, objectFit: "cover" }}
           />
         </View>
 
@@ -33,7 +32,7 @@ const index = () => {
             />
             <TextInput
               placeholder="Enter your password"
-             placeholderTextColor="#6b7280"
+              placeholderTextColor="#6b7280"
               className="p-2 py-5 bg-primaryInput text-primaryText  rounded-xl"
             />
           </View>

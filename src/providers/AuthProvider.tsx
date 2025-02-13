@@ -11,14 +11,14 @@ import {
   import AsyncStorage from "@react-native-async-storage/async-storage";
   import { router } from "expo-router";
   interface AuthContextProps {
-    signIn: (args: string) => void;
+    // signIn: (args: string) => void;
     signOut: () => void;
     token: MutableRefObject<string | null> | null;
     isLoading: boolean;
   }
   
   const AuthContext = createContext<AuthContextProps>({
-    signIn: () => null,
+    // signIn: () => null,
     signOut: () => null,
     token: null,
     isLoading: true,
@@ -42,11 +42,11 @@ import {
       validUser();
     }, []);
   
-    const signIn = useCallback(async (token: string) => {
-      await AsyncStorage.setItem("@token", token);
-      tokenRef.current = token;
-      router.replace("/");
-    }, []);
+    // const signIn = useCallback(async (token: string) => {
+    //   await AsyncStorage.setItem("@token", token);
+    //   tokenRef.current = token;
+    //   router.replace("/");
+    // }, []);
   
     const signOut = useCallback(async () => {
       await AsyncStorage.setItem("@token", "");
@@ -57,7 +57,7 @@ import {
     return (
       <AuthContext.Provider
         value={{
-          signIn,
+          // signIn,
           signOut,
           token: tokenRef,
           isLoading,
