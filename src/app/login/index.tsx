@@ -10,7 +10,6 @@ import React, { useEffect, useState } from "react";
 import Logo from "../../components/Logo";
 import { useLogin } from "../../queries/useAuth";
 import { router } from "expo-router";
-import { useProfile } from "../../queries/useProfile";
 
 const index = () => {
   const [userConfig, setUserConfig] = useState({ email: "", password: "" });

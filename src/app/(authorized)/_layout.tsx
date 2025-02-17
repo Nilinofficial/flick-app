@@ -1,37 +1,20 @@
-import AsyncStorage from "@react-native-async-storage/async-storage";
-import { Redirect, router, Stack } from "expo-router";
-import { ReactNode, useEffect, useState } from "react";
-import { useAppDispatch, useAppSelector } from "../../store/hooks";
-import { useProfile } from "../../queries/useProfile";
-import { setUser } from "../../slices/userSlice";
+import { Redirect, Stack } from "expo-router";
+import { useAuthSession } from "../../providers/AuthProvider";
+import { ActivityIndicator, View } from "react-native";
 
-export default function RootLayout(): ReactNode {
-  const [validUser, setValidUser] = useState(true);
-  const { data: profileData, isSuccess } = useProfile();
-  const dispatch = useAppDispatch();
+export default function RootLayout() {
+  const { token, isLoading } = useAuthSession();
 
-  useEffect(() => {
-    if (isSuccess && profileData?.data) {
-      const { email, firstName, lastName, isVerified } = profileData.data;
-      dispatch(setUser({ email, firstname: firstName, lastName, isVerified }));
-    }
-  }, [isSuccess, profileData, dispatch]);
-
-  const isValidUser = async () => {
-    const token = await AsyncStorage.getItem("@token");
-    if (!token) setValidUser(false);
-  };
-
-  useEffect(() => {
-    isValidUser();
-  }, []);
-
-  if (!validUser) {
-    return <Redirect href="/login" />;
+  if (isLoading) {
+    return (
+      <View style={{ flex: 1, justifyContent: "center", alignItems: "center" }}>
+        <ActivityIndicator size="large" color="#0000ff" />
+      </View>
+    );
   }
 
-  if (validUser && !profileData?.data.isVerified) {
-    return <Redirect href="/verification" />;
+  if (!token) {
+    return <Redirect href="/login" />;
   }
 
   return (
