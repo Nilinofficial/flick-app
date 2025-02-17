@@ -4,12 +4,41 @@ import {
   TextInput,
   Pressable,
   ActivityIndicator,
+  ToastAndroid,
 } from "react-native";
-import React from "react";
+import React, { useEffect, useState } from "react";
 import Logo from "../../components/Logo";
 import { router } from "expo-router";
+import { useRegister } from "../../queries/useAuth";
+import { MaterialCommunityIcons } from "@expo/vector-icons";
 
 const index = () => {
+  const [userConfig, setUserConfig] = useState({
+    firstName: "",
+    lastName: "",
+    email: "",
+    password: "",
+  });
+  const [showPassword, setShowPassword] = useState(false);
+  const { mutate, isError, error, isPending } = useRegister();
+  const handleRegister = () => {
+    mutate({
+      firstName: userConfig.firstName,
+      lastName: userConfig.lastName,
+      email: userConfig.email,
+      password: userConfig.password,
+    });
+  };
+
+  const showToast = (error: string | undefined) => {
+    ToastAndroid.show(error || "", ToastAndroid.SHORT);
+  };
+  useEffect(() => {
+    if (isError) {
+      showToast(error.response?.data.message);
+    }
+  }, [isError]);
+
   return (
     <View className="h-full bg-primaryBg ">
       <View className="flex  flex-col justify-around h-full mx-3">
@@ -30,6 +59,9 @@ const index = () => {
 
           <View className="  flex flex-col mx-4 mt-6">
             <TextInput
+              onChangeText={(text) =>
+                setUserConfig({ ...userConfig, firstName: text })
+              }
               placeholder="First Name"
               placeholderTextColor="#6b7280"
               keyboardType="email-address"
@@ -37,6 +69,9 @@ const index = () => {
               className="p-2 py-5 bg-primaryInput text-primaryText rounded-xl mb-4"
             />
             <TextInput
+              onChangeText={(text) =>
+                setUserConfig({ ...userConfig, lastName: text })
+              }
               placeholder="Last Name"
               placeholderTextColor="#6b7280"
               keyboardType="email-address"
@@ -44,6 +79,9 @@ const index = () => {
               className="p-2 py-5 bg-primaryInput text-primaryText rounded-xl mb-4"
             />
             <TextInput
+              onChangeText={(text) =>
+                setUserConfig({ ...userConfig, email: text })
+              }
               placeholder="Email address"
               placeholderTextColor="#6b7280"
               keyboardType="email-address"
@@ -51,12 +89,28 @@ const index = () => {
               className="p-2 py-5 bg-primaryInput text-primaryText rounded-xl mb-4"
             />
 
-            <TextInput
-              placeholder="Password"
-              placeholderTextColor="#6b7280"
-              secureTextEntry
-              className="p-2 py-5 bg-primaryInput text-primaryText rounded-xl"
-            />
+            <View className="flex justify-center">
+              <TextInput
+                onChangeText={(text) =>
+                  setUserConfig({ ...userConfig, password: text })
+                }
+                placeholder="Password"
+                placeholderTextColor="#6b7280"
+                secureTextEntry
+                className="p-2 py-5 bg-primaryInput text-primaryText rounded-xl"
+              />
+
+              <Pressable
+                onPress={() => setShowPassword(!showPassword)}
+                className="absolute right-4 top-1/2 -translate-y-1/2"
+              >
+                <MaterialCommunityIcons
+                  name={showPassword ? "eye-off" : "eye"}
+                  size={24}
+                  color="#6b7280"
+                />
+              </Pressable>
+            </View>
           </View>
         </View>
 
@@ -70,13 +124,17 @@ const index = () => {
               Sign In
             </Text>
           </Text>
-          <Pressable className="w-full bg-blue-600 py-5 rounded-xl mt-3  flex flex-row justify-center items-center ">
+          <Pressable
+            onPress={handleRegister}
+            disabled={isPending}
+            className="w-full bg-blue-600 py-5 rounded-xl mt-3  flex flex-row justify-center items-center "
+          >
             <Text className="text-white text-center font-bold text-xl ">
-              Register
+              {!isPending ? "Register" : "Registering"}
             </Text>
 
             <View className="pl-2">
-              <ActivityIndicator color="fff" />
+              {isPending && <ActivityIndicator color="#fafafa" />}
             </View>
           </Pressable>
         </View>
