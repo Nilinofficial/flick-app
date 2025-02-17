@@ -27,7 +27,6 @@ export const useLogin = () => {
     onSuccess: async (data) => {
       await AsyncStorage.setItem("@token", data.token);
       setToken(data.token);
-
       router.push("/");
     },
     onError: (err: AxiosError<ApiError>) => {
