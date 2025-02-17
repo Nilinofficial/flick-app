@@ -1,12 +1,13 @@
 import { useMutation, useQueries, useQuery } from "@tanstack/react-query";
 import axios, { AxiosError } from "axios";
-import { DEV_BASE_URL } from "./useAuth";
 import AsyncStorage from "@react-native-async-storage/async-storage";
+
+const BASE_URL = process.env.BASE_URL;
 
 export const fetchProfile = async () => {
   const token = await AsyncStorage.getItem("@token");
 
-  const profileData = await axios.get(`${DEV_BASE_URL}/profile`, {
+  const profileData = await axios.get(`${BASE_URL}/profile`, {
     headers: { Authorization: `Bearer ${token}` },
   });
 
