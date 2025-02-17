@@ -3,9 +3,9 @@ export interface loginProps {
   password: string;
 }
 
-export interface authProfileProps {
+export interface registerProps {
   firstName: string;
   lastName: string;
   email: string;
-  isVerified: boolean;
+  password: string;
 }

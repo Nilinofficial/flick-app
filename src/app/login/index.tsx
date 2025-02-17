@@ -10,10 +10,12 @@ import React, { useEffect, useState } from "react";
 import Logo from "../../components/Logo";
 import { useLogin } from "../../queries/useAuth";
 import { router } from "expo-router";
+import { MaterialCommunityIcons } from "@expo/vector-icons";
 
 const index = () => {
   const [userConfig, setUserConfig] = useState({ email: "", password: "" });
   const { mutate, error, isError, isPending } = useLogin();
+  const [showPassword, setShowPassword] = useState(false);
 
   const handleSubmit = () => {
     mutate({ email: userConfig.email, password: userConfig.password });
@@ -58,16 +60,29 @@ const index = () => {
               className="p-2 py-5 bg-primaryInput text-primaryText rounded-xl mb-4"
             />
 
-            <TextInput
-              value={userConfig.password}
-              onChangeText={(text) =>
-                setUserConfig({ ...userConfig, password: text })
-              }
-              placeholder="Enter your password"
-              placeholderTextColor="#6b7280"
-              secureTextEntry
-              className="p-2 py-5 bg-primaryInput text-primaryText rounded-xl"
-            />
+            <View className="flex justify-center">
+              <TextInput
+                value={userConfig.password}
+                onChangeText={(text) =>
+                  setUserConfig({ ...userConfig, password: text })
+                }
+                placeholder="Enter your password"
+                placeholderTextColor="#6b7280"
+                secureTextEntry={showPassword ? false : true}
+                className="p-2 py-5 bg-primaryInput text-primaryText rounded-xl"
+              />
+
+              <Pressable
+                onPress={() => setShowPassword(!showPassword)}
+                className="absolute right-4 top-1/2 -translate-y-1/2"
+              >
+                <MaterialCommunityIcons
+                  name={showPassword ? "eye-off" : "eye"}
+                  size={24}
+                  color="#6b7280"
+                />
+              </Pressable>
+            </View>
           </View>
         </View>
 
@@ -87,11 +102,11 @@ const index = () => {
             disabled={isPending}
           >
             <Text className="text-white text-center font-bold text-xl ">
-              Sign In
+              {!isPending ? "Sign In" : "Signing in"}
             </Text>
 
             <View className="pl-2">
-              {isPending && <ActivityIndicator color="fff" />}
+              {isPending && <ActivityIndicator color="#fafafa" />}
             </View>
           </Pressable>
         </View>
