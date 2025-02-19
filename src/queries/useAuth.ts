@@ -1,10 +1,11 @@
 import axios, { AxiosError } from "axios";
 import { loginProps, registerProps } from "../types";
-import { useMutation } from "@tanstack/react-query";
+import { useMutation, useQueryClient } from "@tanstack/react-query";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import { useAuthSession } from "../providers/AuthProvider";
 import { router } from "expo-router";
 import { BASE_URL } from "../contants";
+import { fetchProfile } from "./useProfile";
 
 interface ApiError {
   message?: string;
@@ -35,14 +36,21 @@ const registerUser = async ({
 };
 
 export const useLogin = () => {
-  const { setToken } = useAuthSession();
+  const queryClient = useQueryClient();
+  const { setToken, setUser } = useAuthSession();
   return useMutation({
     mutationFn: loginUser,
     mutationKey: ["loginUser"],
     onSuccess: async (data) => {
       await AsyncStorage.setItem("@token", data.token);
       setToken(data.token);
-      router.push("/");
+
+      const { data: profileData } = await queryClient.fetchQuery({
+        queryKey: ["fetchProfile"],
+        queryFn: fetchProfile,
+      });
+      setUser(profileData);
+      router.push(profileData.isVerified ? "/" : "/verification");
     },
     onError: (err: AxiosError<ApiError>) => {
       return err;

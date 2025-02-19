@@ -9,10 +9,10 @@ export default function RootLayout(): ReactNode {
   const queryClient = new QueryClient();
 
   return (
-    <AuthContextProvider>
-      <QueryClientProvider client={queryClient}>
+    <QueryClientProvider client={queryClient}>
+      <AuthContextProvider>
         <Slot />
-      </QueryClientProvider>
-    </AuthContextProvider>
+      </AuthContextProvider>
+    </QueryClientProvider>
   );
 }

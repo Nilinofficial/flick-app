@@ -9,3 +9,10 @@ export interface registerProps {
   email: string;
   password: string;
 }
+
+export interface UserProfileProps {
+  firstName: string;
+  lastName: string;
+  email: string;
+  isVerified: boolean;
+}
