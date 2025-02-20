@@ -18,8 +18,6 @@ const index = () => {
 
       <Text>{userDetails?.email}</Text>
 
-      <Text>{userDetails?.isVerified ? "true" : "false"}</Text>
-
       <Pressable className="p-4 bg-red-700" onPress={logout}>
         <Text>Logout</Text>
       </Pressable>

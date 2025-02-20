@@ -21,16 +21,6 @@ const index = () => {
     mutate({ email: userConfig.email, password: userConfig.password });
   };
 
-  const showToast = (error: string | undefined) => {
-    ToastAndroid.show(error || "", ToastAndroid.SHORT);
-  };
-
-  useEffect(() => {
-    if (isError) {
-      showToast(error.response?.data.message);
-    }
-  }, [isError]);
-
   return (
     <View className="h-full bg-primaryBg ">
       <View className="flex  flex-col justify-around h-full mx-3">

@@ -1,6 +1,7 @@
 import { Redirect, Stack } from "expo-router";
 import { useAuthSession } from "../../providers/AuthProvider";
 import { ActivityIndicator, View } from "react-native";
+import AsyncStorage from "@react-native-async-storage/async-storage";
 
 export default function RootLayout() {
   const { token, isLoading, userDetails, isFetching } = useAuthSession();
@@ -18,7 +19,8 @@ export default function RootLayout() {
   }
 
   if (token && !userDetails.isVerified) {
-    return <Redirect href="/verification" />;
+    AsyncStorage.setItem("@token", "");
+    return <Redirect href="/login" />;
   }
 
   return (

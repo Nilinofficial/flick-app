@@ -4,7 +4,8 @@ import {
   TextInput,
   Pressable,
   ActivityIndicator,
-  ToastAndroid,
+  KeyboardAvoidingView,
+  Platform,
 } from "react-native";
 import React, { useEffect, useState } from "react";
 import Logo from "../../components/Logo";
@@ -20,7 +21,7 @@ const index = () => {
     password: "",
   });
   const [showPassword, setShowPassword] = useState(false);
-  const { mutate, isError, error, isPending } = useRegister();
+  const { mutate, isPending } = useRegister();
   const handleRegister = () => {
     mutate({
       firstName: userConfig.firstName,
@@ -30,17 +31,11 @@ const index = () => {
     });
   };
 
-  const showToast = (error: string | undefined) => {
-    ToastAndroid.show(error || "", ToastAndroid.SHORT);
-  };
-  useEffect(() => {
-    if (isError) {
-      showToast(error.response?.data.message);
-    }
-  }, [isError]);
-
   return (
-    <View className="h-full bg-primaryBg ">
+    <KeyboardAvoidingView
+      behavior={Platform.OS === "ios" ? "padding" : undefined}
+      className="flex-1 bg-primaryBg "
+    >
       <View className="flex  flex-col justify-around h-full mx-3">
         <Logo />
         <View className="space-y-4 ">
@@ -96,7 +91,7 @@ const index = () => {
                 }
                 placeholder="Password"
                 placeholderTextColor="#6b7280"
-                secureTextEntry
+                secureTextEntry={showPassword ? false : true}
                 className="p-2 py-5 bg-primaryInput text-primaryText rounded-xl"
               />
 
@@ -139,7 +134,7 @@ const index = () => {
           </Pressable>
         </View>
       </View>
-    </View>
+    </KeyboardAvoidingView>
   );
 };
 
