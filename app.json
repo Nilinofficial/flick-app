@@ -18,8 +18,7 @@
     "android": {
       "softwareKeyboardLayoutMode": "pan",
       "adaptiveIcon": {
-
-        "backgroundColor": "#ffffff"
+        "backgroundColor": "#000000"
       },
       "package": "com.nilin_dev.flick"
     },
@@ -27,8 +26,17 @@
       "favicon": "./assets/favicon.png",
       "bundler": "metro"
     },
-    "plugins": [
-      
-    ]
+    "plugins": [],
+    "extra": {
+      "eas": {
+        "projectId": "167673c6-4a55-4ea0-8902-3cc819f58cb1"
+      }
+    },
+    "runtimeVersion": {
+      "policy": "appVersion"
+    },
+    "updates": {
+      "url": "https://u.expo.dev/167673c6-4a55-4ea0-8902-3cc819f58cb1"
+    }
   }
 }
