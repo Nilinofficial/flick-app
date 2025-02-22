@@ -125,7 +125,7 @@ export const useSendOtp = () => {
     mutationKey: ["sendOtp"],
     mutationFn: sendOtp,
     onSuccess: (data) => {
-      showToast(data.message);
+      showToast("OTP send successfully");
     },
   });
 };
@@ -139,7 +139,7 @@ export const useVerifyOtp = () => {
     onSuccess: async (data) => {
       console.log(data);
 
-      showToast(data.message);
+      showToast("Your account has been verified.");
       const { data: profileData } = await queryClient.fetchQuery({
         queryKey: ["fetchProfile"],
         queryFn: fetchProfile,
@@ -148,8 +148,6 @@ export const useVerifyOtp = () => {
       router.push(profileData.isVerified ? "/" : "/verification");
     },
     onError: (err: AxiosError<ApiError>) => {
-      console.log(err);
-
       showToast(err.response?.data.message);
     },
   });

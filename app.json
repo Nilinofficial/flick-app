@@ -18,6 +18,7 @@
     "android": {
       "softwareKeyboardLayoutMode": "pan",
       "adaptiveIcon": {
+        "foregroundImage": "./assets/logo_2.png",
         "backgroundColor": "#000000"
       },
       "package": "com.nilin_dev.flick"
@@ -29,7 +30,7 @@
     "plugins": [],
     "extra": {
       "eas": {
-        "projectId": "167673c6-4a55-4ea0-8902-3cc819f58cb1"
+        "projectId": "728e3d8d-3039-4a86-ba4a-a86a769f50ea"
       }
     },
     "runtimeVersion": {

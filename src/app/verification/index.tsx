@@ -1,15 +1,7 @@
-import {
-  View,
-  Text,
-  TextInput,
-  Pressable,
-  ActivityIndicator,
-} from "react-native";
-import React, { useEffect, useState } from "react";
+import { View, Text, Pressable, ActivityIndicator } from "react-native";
+import React, { useState } from "react";
 import Logo from "../../components/Logo";
-import { router } from "expo-router";
 import { OtpInput } from "react-native-otp-entry";
-import AsyncStorage from "@react-native-async-storage/async-storage";
 import { useSendOtp, useVerifyOtp } from "../../queries/useAuth";
 
 const index = () => {
@@ -45,7 +37,7 @@ const index = () => {
           <View className=" flex w-full flex-row justify-center  mt-6">
             <OtpInput
               focusColor="pink"
-              numberOfDigits={6}
+              numberOfDigits={4}
               onTextChange={(text) => setOtp(text)}
               theme={{
                 containerStyle: {

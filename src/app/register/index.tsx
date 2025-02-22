@@ -7,7 +7,7 @@ import {
   KeyboardAvoidingView,
   Platform,
 } from "react-native";
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import Logo from "../../components/Logo";
 import { router } from "expo-router";
 import { useRegister } from "../../queries/useAuth";

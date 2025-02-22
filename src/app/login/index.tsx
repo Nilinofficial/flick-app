@@ -6,7 +6,7 @@ import {
   ActivityIndicator,
   ToastAndroid,
 } from "react-native";
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import Logo from "../../components/Logo";
 import { useLogin } from "../../queries/useAuth";
 import { router } from "expo-router";
