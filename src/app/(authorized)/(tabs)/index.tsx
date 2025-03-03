@@ -1,27 +1,20 @@
-import AsyncStorage from "@react-native-async-storage/async-storage";
-import { router } from "expo-router";
-import { Pressable, StyleSheet, Text, View } from "react-native";
-import { useAuthSession } from "../../../providers/AuthProvider";
+import { Pressable, ScrollView } from "react-native";
+
+import { SafeAreaView } from "react-native-safe-area-context";
 import Header from "../../../components/home/Header";
 import Stories from "../../../components/home/Stories";
+import Posts from "../../../components/home/Posts";
 
-const index = () => {
-  const { userDetails } = useAuthSession();
-
-  const logout = async () => {
-    await AsyncStorage.setItem("@token", "");
-    await AsyncStorage.setItem("@user", "");
-    router.push("/login");
-  };
-
+const Index = () => {
   return (
-    <View className="bg-black flex-1">
+    <SafeAreaView className="flex-1 bg-black">
       <Header />
-      <Stories />
-    </View>
+      <ScrollView keyboardShouldPersistTaps="handled">
+        <Stories />
+        <Posts />
+      </ScrollView>
+    </SafeAreaView>
   );
 };
 
-export default index;
-
-const styles = StyleSheet.create({});
+export default Index;
