@@ -3,13 +3,20 @@ import MaterialIcons from "@expo/vector-icons/MaterialIcons";
 
 const TabLayout = () => {
   return (
-    <Tabs screenOptions={{ tabBarActiveTintColor: "blue" }}>
+    <Tabs
+      screenOptions={{
+        tabBarActiveTintColor: "blue",
+        headerShown: false,
+        tabBarStyle: { backgroundColor: "black" },
+        tabBarShowLabel: false,
+      }}
+    >
       <Tabs.Screen
         name="index"
         options={{
           title: "Home",
           tabBarIcon: ({ color }) => (
-            <MaterialIcons name="home" size={24} color={color} />
+            <MaterialIcons name="home" size={32} color={color} />
           ),
         }}
       />
@@ -17,7 +24,7 @@ const TabLayout = () => {
         name="Search"
         options={{
           tabBarIcon: ({ color }) => (
-            <MaterialIcons name="search" size={24} color={color} />
+            <MaterialIcons name="search" size={32} color={color} />
           ),
         }}
       />
@@ -25,7 +32,7 @@ const TabLayout = () => {
         name="Notifications"
         options={{
           tabBarIcon: ({ color }) => (
-            <MaterialIcons name="notifications" size={24} color={color} />
+            <MaterialIcons name="notifications" size={32} color={color} />
           ),
         }}
       />
@@ -33,7 +40,7 @@ const TabLayout = () => {
         name="Profile"
         options={{
           tabBarIcon: ({ color }) => (
-            <MaterialIcons name="person" size={24} color={color} />
+            <MaterialIcons name="person" size={32} color={color} />
           ),
         }}
       />
