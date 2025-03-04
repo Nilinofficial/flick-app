@@ -7,7 +7,23 @@ const TabLayout = () => {
       screenOptions={{
         tabBarActiveTintColor: "blue",
         headerShown: false,
-        tabBarStyle: { backgroundColor: "black" },
+        tabBarIconStyle: {
+          display: "flex",
+          alignItems: "center",
+          justifyContent: "center",
+          height: "100%",
+        },
+
+        tabBarStyle: {
+          position: "absolute",
+          backgroundColor: "#121212",
+          minHeight: 70,
+          // margin: 20,
+          borderTopRightRadius: 20,
+          borderTopLeftRadius: 20,
+          paddingHorizontal: 20,
+          borderTopWidth: 0,
+        },
         tabBarShowLabel: false,
       }}
     >
@@ -36,6 +52,7 @@ const TabLayout = () => {
           ),
         }}
       />
+
       <Tabs.Screen
         name="Profile"
         options={{
