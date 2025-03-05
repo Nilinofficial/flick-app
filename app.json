@@ -27,7 +27,14 @@
       "favicon": "./assets/favicon.png",
       "bundler": "metro"
     },
-    "plugins": [],
+    "plugins": [
+      [
+        "expo-image-picker",
+        {
+          "photosPermission": "Allow Flick to access your photos and videos."
+        }
+      ]
+    ],
     "extra": {
       "eas": {
         "projectId": "728e3d8d-3039-4a86-ba4a-a86a769f50ea"

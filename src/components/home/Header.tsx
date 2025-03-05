@@ -1,7 +1,8 @@
 import { View, Text } from "react-native";
-import React from "react";
 import { AntDesign } from "@expo/vector-icons";
 import Ionicons from "@expo/vector-icons/Ionicons";
+import { router } from "expo-router";
+
 const Header = () => {
   return (
     <View className="h-14 flex flex-row justify-between items-center p-2 bg-black rounded-lg">
@@ -11,7 +12,12 @@ const Header = () => {
       <Text className=" text-white font-bold text-2xl italic">Flick</Text>
 
       <View className="flex flex-row">
-        <AntDesign name="pluscircleo" size={24} color="white" />
+        <AntDesign
+          name="pluscircleo"
+          size={24}
+          color="white"
+          onPress={() => router.push("/addPosts")}
+        />
       </View>
     </View>
   );

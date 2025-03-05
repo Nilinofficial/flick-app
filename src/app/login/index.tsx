@@ -4,7 +4,6 @@ import {
   TextInput,
   Pressable,
   ActivityIndicator,
-  ToastAndroid,
 } from "react-native";
 import React, { useState } from "react";
 import Logo from "../../components/Logo";
@@ -14,7 +13,7 @@ import { MaterialCommunityIcons } from "@expo/vector-icons";
 
 const index = () => {
   const [userConfig, setUserConfig] = useState({ email: "", password: "" });
-  const { mutate, error, isError, isPending } = useLogin();
+  const { mutate, isPending } = useLogin();
   const [showPassword, setShowPassword] = useState(false);
 
   const handleSubmit = () => {
