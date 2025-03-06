@@ -32,13 +32,13 @@ const PostCard = ({ username, postUrl }: PostProps) => {
         <View className="flex flex-row items-center gap-2">
           <Image
             source={{
-              uri: "https://i.ibb.co/vvHkCPQ3/ann-zarah-20250303-0002.jpg",
+              uri: "https://i.ibb.co/kkP7PWc/its-me-nilin-20250306-0001.jpg",
             }}
             className="w-10 h-10 rounded-full bg-orange-800"
           />
           <View className="flex flex-col">
             <Text className="text-white">{username}</Text>
-            <Text className="text-gray-500 text-sm">Some street, Malta</Text>
+            <Text className="text-gray-500 text-sm">Some Place, Erumely</Text>
           </View>
         </View>
 
