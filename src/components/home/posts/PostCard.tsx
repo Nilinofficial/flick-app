@@ -13,9 +13,10 @@ import PostReactions from "./PostReactions";
 interface PostProps {
   username: string;
   postUrl: string;
+  caption: string;
 }
 
-const PostCard = ({ username, postUrl }: PostProps) => {
+const PostCard = ({ username, postUrl, caption }: PostProps) => {
   const screenWidth = Dimensions.get("window").width;
   const [imageLoaded, setImageLoaded] = useState(false);
   const [imageRatio, setImageRatio] = useState(1);
@@ -65,7 +66,7 @@ const PostCard = ({ username, postUrl }: PostProps) => {
 
       <View className="flex flex-row items-center gap-3 mt-2">
         <Text className="text-white font-bold">{username}</Text>
-        <Text className="text-white">Vibing with myself ❤️</Text>
+        <Text className="text-white">{caption}</Text>
       </View>
     </View>
   );

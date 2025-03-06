@@ -16,3 +16,12 @@ export interface UserProfileProps {
   email: string;
   isVerified: boolean;
 }
+
+export interface AddPostData {
+  caption: string;
+  image: {
+    uri: string;
+    name: string;
+    type: string;
+  };
+}

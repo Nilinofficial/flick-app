@@ -16,13 +16,14 @@ const TabLayout = () => {
 
         tabBarStyle: {
           position: "absolute",
-          backgroundColor: "#121212",
-          minHeight: 70,
+          backgroundColor: "black",
+          minHeight: 60,
           // margin: 20,
-          borderTopRightRadius: 14,
-          borderTopLeftRadius: 14,
+          borderTopRightRadius: 10,
+          borderTopLeftRadius: 10,
           paddingHorizontal: 20,
-          borderTopWidth: 0,
+          borderTopWidth: 0.2,
+          borderTopColor: "rgba(255, 255, 255, 0.2)",
         },
         tabBarShowLabel: false,
       }}

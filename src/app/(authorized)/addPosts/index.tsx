@@ -1,12 +1,21 @@
-import { View, Text, Pressable, TextInput } from "react-native";
+import {
+  View,
+  Text,
+  Pressable,
+  TextInput,
+  Alert,
+  ActivityIndicator,
+} from "react-native";
 import React, { useState } from "react";
 import * as ImagePicker from "expo-image-picker";
 import { Image } from "expo-image";
 import { Feather, Ionicons } from "@expo/vector-icons"; // Icons for modern UI
+import { useAddPost } from "../../../queries/usePosts";
 
 const Index = () => {
   const [image, setImage] = useState<string | null>(null);
   const [caption, setCaption] = useState("");
+  const { mutate: uploadPostFn, isPending } = useAddPost();
 
   const pickImage = async () => {
     let result = await ImagePicker.launchImageLibraryAsync({
@@ -23,6 +32,26 @@ const Index = () => {
   const removeImage = () => {
     setImage(null);
     setCaption("");
+  };
+
+  const uploadPost = async () => {
+    if (!image) {
+      Alert.alert("Error", "Please select an image and enter a caption.");
+      return;
+    }
+
+    let formData: any = new FormData();
+    formData.append("caption", caption);
+    formData.append("image", {
+      uri: image,
+      name: `photo_${Date.now()}.jpg`,
+      type: "image/jpeg",
+    });
+
+    uploadPostFn(formData);
+    setImage("");
+    // formData.append("caption", "");
+    // formData.append("image", "");
   };
 
   return (
@@ -51,7 +80,7 @@ const Index = () => {
       )}
 
       <TextInput
-        className="w-full bg-gray-800 text-white py-3 px-4 rounded-xl mb-4"
+        className="w-full bg-gray-800 text-white py-3 px-4 rounded-xl my-4"
         placeholder="Add a caption..."
         placeholderTextColor="#999"
         value={caption}
@@ -72,11 +101,19 @@ const Index = () => {
         </Pressable>
 
         {/* Upload Button */}
-        <Pressable className="flex-1 bg-blue-500 py-4 rounded-xl flex-row items-center justify-center ml-2">
+        <Pressable
+          disabled={isPending}
+          onPress={uploadPost}
+          className="flex-1 bg-blue-500 py-4 rounded-xl flex-row items-center justify-center ml-2"
+        >
           <Feather name="upload" size={24} color="white" />
           <Text className="text-white text-lg font-medium ml-2">
-            Upload Post
+            {isPending ? "Uploading Post" : "Upload Post"}
           </Text>
+
+          <View className="pl-2">
+            {isPending && <ActivityIndicator color="#fafafa" />}
+          </View>
         </Pressable>
       </View>
     </View>

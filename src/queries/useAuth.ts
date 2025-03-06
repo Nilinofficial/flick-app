@@ -8,7 +8,7 @@ import { BASE_URL } from "../contants";
 import { fetchProfile } from "./useProfile";
 import { showToast } from "../utils/utils";
 
-interface ApiError {
+export interface ApiError {
   message?: string;
 }
 
@@ -137,8 +137,6 @@ export const useVerifyOtp = () => {
     mutationKey: ["verifyOtp"],
     mutationFn: verifyOtp,
     onSuccess: async (data) => {
-      console.log(data);
-
       showToast("Your account has been verified.");
       const { data: profileData } = await queryClient.fetchQuery({
         queryKey: ["fetchProfile"],

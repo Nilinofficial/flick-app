@@ -7,11 +7,11 @@ import Posts from "../../../components/home/posts/Posts";
 
 const Index = () => {
   return (
-    <SafeAreaView className="flex-1 bg-black">
+    <SafeAreaView className="flex-1 bg-black pb-16">
       <ScrollView
         keyboardShouldPersistTaps="handled"
         showsVerticalScrollIndicator={false}
-        className="p-4"
+        className="p-4 "
       >
         <Header />
         <Stories />
