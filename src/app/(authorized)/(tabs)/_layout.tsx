@@ -45,6 +45,15 @@ const TabLayout = () => {
           ),
         }}
       />
+
+      <Tabs.Screen
+        name="Requests"
+        options={{
+          tabBarIcon: ({ color }) => (
+            <MaterialIcons name="people-alt" size={32} color={color} />
+          ),
+        }}
+      />
       <Tabs.Screen
         name="Notifications"
         options={{

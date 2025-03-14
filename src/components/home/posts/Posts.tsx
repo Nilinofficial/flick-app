@@ -1,10 +1,17 @@
 import { Text, View } from "react-native";
 import PostCard from "./PostCard";
 import { useGetAllPosts } from "../../../queries/usePosts";
-import { useEffect } from "react";
+import { useFocusEffect } from "expo-router";
+import { useCallback } from "react";
 
 const Posts = () => {
-  const { data: posts } = useGetAllPosts();
+  const { data: posts, refetch } = useGetAllPosts();
+
+  useFocusEffect(
+    useCallback(() => {
+      refetch();
+    }, [refetch])
+  );
 
   if (!posts) {
     return (
