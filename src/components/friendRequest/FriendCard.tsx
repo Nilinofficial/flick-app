@@ -11,6 +11,7 @@ interface FriendCardProps {
   lastName: string;
   requestId: string;
   profilePicUrl?: string;
+  isSuggestion?: boolean;
 }
 
 const FriendCard = ({
@@ -18,16 +19,18 @@ const FriendCard = ({
   lastName,
   requestId,
   profilePicUrl,
+  isSuggestion = false,
 }: FriendCardProps) => {
   const { mutate: mutateRequest } = useRespondRequest();
   const { mutate: mutateConnection } = useAddConnectionRequest();
 
   const handleRequest = (status: string, id: string) => {
-    mutateRequest({ status, userId: id });
+    if (isSuggestion) mutateConnection({ status, userId: id });
+    else mutateRequest({ status, userId: id });
   };
 
   return (
-    <View className="mt-4 p-6 bg-gray-900 flex flex-row  rounded-full w-full items-center justify-between">
+    <View className="mt-4 p-6 bg-gray-900 flex flex-row rounded-full w-full items-center justify-between">
       <Image
         source={{
           uri: profilePicUrl,
@@ -42,32 +45,40 @@ const FriendCard = ({
       <View className="items-start">
         <View className="flex flex-row">
           <Text
-            className="text-center text-white font-bold "
+            className="text-center text-white font-bold"
             numberOfLines={1}
             ellipsizeMode="tail"
             style={{ maxWidth: 120, flexShrink: 1 }}
           >
             {`${firstName} ${lastName}`}
           </Text>
-          <Text className="text-white"> wants</Text>
+          {!isSuggestion && <Text className="text-white"> wants</Text>}
         </View>
 
-        <Text className="text-white">to be your friend</Text>
+        {!isSuggestion && <Text className="text-white">to be your friend</Text>}
       </View>
 
-      <View className="flex flex-col items-center justify-center  gap-3">
+      <View className="flex flex-col items-center justify-center gap-3">
         <Pressable
-          onPress={() => handleRequest("accepted", requestId)}
-          className="bg-green-700 p-1 rounded-full px-4 "
+          onPress={() =>
+            handleRequest(isSuggestion ? "interested" : "accepted", requestId)
+          }
+          className="bg-green-700 p-1 rounded-full px-4"
         >
-          <Text className="text-white font-bold">ACCEPT</Text>
+          <Text className="text-white font-bold">
+            {isSuggestion ? "CONNECT" : "ACCEPT"}
+          </Text>
         </Pressable>
 
         <Pressable
-          onPress={() => handleRequest("rejected", requestId)}
-          className="bg-red-700 p-1 px-4 rounded-full "
+          onPress={() =>
+            handleRequest(isSuggestion ? "ignored" : "rejected", requestId)
+          }
+          className="bg-red-700 p-1 px-4 rounded-full"
         >
-          <Text className="text-white font-bold">REJECT</Text>
+          <Text className="text-white font-bold">
+            {isSuggestion ? "IGNORE" : "REJECT"}
+          </Text>
         </Pressable>
       </View>
     </View>

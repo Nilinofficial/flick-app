@@ -7,7 +7,6 @@ import {
   useGetFriendRequests,
   useGetFriendSuggestions,
 } from "../../../queries/useRequests";
-import SuggestionsCard from "../../../components/friendRequest/SuggestionsCard";
 
 interface FriendRequestProps {
   _id: string;
@@ -25,10 +24,10 @@ interface FriendRequestProps {
 }
 
 const Requests = () => {
-  const { data: friendRequests } = useGetFriendRequests();
-  const { data: friendSuggestions } = useGetFriendSuggestions();
-
-  console.log(friendSuggestions?.profilePicUrl);
+  const { data: friendRequests, refetch: refetchFriendRequests } =
+    useGetFriendRequests();
+  const { data: friendSuggestions, refetch: refetchFriendSuggestions } =
+    useGetFriendSuggestions();
 
   return (
     <SafeAreaView className="flex-1 bg-black">
@@ -68,8 +67,10 @@ const Requests = () => {
         <View className="flex flex-row flex-wrap w-full gap-4 ">
           {friendSuggestions &&
             friendSuggestions.map((friendSuggestion: any) => (
-              <SuggestionsCard
+              <FriendCard
+                isSuggestion={true}
                 key={friendSuggestion._id}
+                requestId={friendSuggestion._id}
                 firstName={friendSuggestion.firstName}
                 lastName={friendSuggestion.lastName}
                 profilePicUrl={friendSuggestion.profilePicUrl}

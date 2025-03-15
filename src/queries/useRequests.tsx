@@ -1,12 +1,7 @@
 import axios from "axios";
 import { BASE_URL } from "../contants";
 import AsyncStorage from "@react-native-async-storage/async-storage";
-import {
-  QueryClient,
-  useMutation,
-  useQuery,
-  useQueryClient,
-} from "@tanstack/react-query";
+import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
 
 interface RespondRequestProps {
   status: string;
@@ -73,6 +68,7 @@ export const useGetFriendRequests = () => {
   return useQuery({
     queryFn: getRequests,
     queryKey: ["getFriendRequests"],
+    refetchInterval: 1000,
   });
 };
 
@@ -90,8 +86,9 @@ export const useRespondRequest = () => {
 
 export const useGetFriendSuggestions = () => {
   return useQuery({
-    queryKey: ["getFriendSuggestion"],
+    queryKey: ["getFriendSuggestions"],
     queryFn: getFriendSuggestions,
+    staleTime: 0,
   });
 };
 
@@ -101,9 +98,7 @@ export const useAddConnectionRequest = () => {
     mutationFn: addorRejectConnection,
     mutationKey: ["addOrRejectConnection"],
     onSuccess: () => {
-      queryClient.invalidateQueries({
-        queryKey: ["getFriendRequests", "getFriendSuggestion"],
-      });
+      queryClient.invalidateQueries({ queryKey: ["getFriendSuggestions"] });
     },
   });
 };
