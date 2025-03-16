@@ -15,6 +15,7 @@ export interface UserProfileProps {
   lastName: string;
   email: string;
   isVerified: boolean;
+  userId: string;
 }
 
 export interface AddPostData {

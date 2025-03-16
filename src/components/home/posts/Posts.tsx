@@ -1,36 +1,45 @@
 import { Text, View } from "react-native";
 import PostCard from "./PostCard";
-import { useGetAllPosts } from "../../../queries/usePosts";
-import { useFocusEffect } from "expo-router";
-import { useCallback } from "react";
 
-const Posts = () => {
-  const { data: posts, refetch } = useGetAllPosts();
+type Post = {
+  __v: number;
+  _id: string;
+  caption: string;
+  createdAt: string;
+  postUrl: string;
+  updatedAt: string;
+  userId: {
+    _id: string;
+    firstName: string;
+  };
+};
 
-  useFocusEffect(
-    useCallback(() => {
-      refetch();
-    }, [refetch])
-  );
+type PostsProps = {
+  posts: Post[];
+};
 
-  if (!posts) {
+const Posts = ({ posts }: PostsProps) => {
+  if (!posts || posts.length === 0) {
     return (
       <>
-        <Text>Loading...</Text>
+        <Text>No Posts...</Text>
       </>
     );
   }
 
   return (
     <View className="flex flex-col gap-6 pb-10 ">
-      {posts.map((post: any) => (
-        <PostCard
-          key={post._id}
-          username={post.userId.firstName}
-          postUrl={post.postUrl}
-          caption={post.caption}
-        />
-      ))}
+      {posts
+        .slice()
+        .reverse()
+        .map((post: any) => (
+          <PostCard
+            key={post._id}
+            username={post.userId.firstName}
+            postUrl={post.postUrl}
+            caption={post.caption}
+          />
+        ))}
     </View>
   );
 };

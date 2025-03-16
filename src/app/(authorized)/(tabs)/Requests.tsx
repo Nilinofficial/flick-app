@@ -1,5 +1,4 @@
 import { View, Text, SafeAreaView, ScrollView } from "react-native";
-import React, { useEffect } from "react";
 import FLHeader from "../../../components/reusable/FLHeader";
 import MaterialIcons from "@expo/vector-icons/MaterialIcons";
 import FriendCard from "../../../components/friendRequest/FriendCard";
@@ -7,6 +6,8 @@ import {
   useGetFriendRequests,
   useGetFriendSuggestions,
 } from "../../../queries/useRequests";
+import { useAuthSession } from "../../../providers/AuthProvider";
+import { useSocket } from "../../../hooks/useSocket";
 
 interface FriendRequestProps {
   _id: string;
@@ -24,10 +25,11 @@ interface FriendRequestProps {
 }
 
 const Requests = () => {
-  const { data: friendRequests, refetch: refetchFriendRequests } =
-    useGetFriendRequests();
-  const { data: friendSuggestions, refetch: refetchFriendSuggestions } =
-    useGetFriendSuggestions();
+  const { userDetails } = useAuthSession();
+  useSocket(userDetails.userId);
+
+  const { data: friendRequests } = useGetFriendRequests();
+  const { data: friendSuggestions } = useGetFriendSuggestions();
 
   return (
     <SafeAreaView className="flex-1 bg-black">

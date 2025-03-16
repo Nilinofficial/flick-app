@@ -4,11 +4,22 @@ import { SafeAreaView } from "react-native-safe-area-context";
 import Header from "../../../components/home/Header";
 import Stories from "../../../components/home/stories/Stories";
 import Posts from "../../../components/home/posts/Posts";
+import { useGetAllPosts } from "../../../queries/usePosts";
+import { useFocusEffect } from "expo-router";
 
 const Index = () => {
+  const { data: posts, refetch } = useGetAllPosts();
+
+  useFocusEffect(
+    useCallback(() => {
+      refetch();
+    }, [refetch])
+  );
+
   const [refreshing, setRefreshing] = useState(false);
 
   const onRefresh = useCallback(() => {
+    refetch();
     setRefreshing(true);
     setTimeout(() => {
       setRefreshing(false);
@@ -31,7 +42,7 @@ const Index = () => {
       >
         <Header />
         <Stories />
-        <Posts />
+        <Posts posts={posts} />
       </ScrollView>
     </SafeAreaView>
   );
