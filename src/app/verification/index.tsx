@@ -37,7 +37,7 @@ const index = () => {
           <View className=" flex w-full flex-row justify-center  mt-6">
             <OtpInput
               focusColor="pink"
-              numberOfDigits={4}
+              numberOfDigits={5}
               onTextChange={(text) => setOtp(text)}
               theme={{
                 containerStyle: {

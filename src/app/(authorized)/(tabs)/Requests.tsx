@@ -7,7 +7,6 @@ import {
   useGetFriendSuggestions,
 } from "../../../queries/useRequests";
 import { useAuthSession } from "../../../providers/AuthProvider";
-import { useSocket } from "../../../hooks/useSocket";
 
 interface FriendRequestProps {
   _id: string;
@@ -25,9 +24,6 @@ interface FriendRequestProps {
 }
 
 const Requests = () => {
-  const { userDetails } = useAuthSession();
-  useSocket(userDetails.userId);
-
   const { data: friendRequests } = useGetFriendRequests();
   const { data: friendSuggestions } = useGetFriendSuggestions();
 

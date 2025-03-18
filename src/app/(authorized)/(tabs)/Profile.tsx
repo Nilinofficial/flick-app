@@ -13,8 +13,6 @@ const Profile = () => {
 
   const { data: profile } = useProfile();
 
-  console.log(profile?.data.firstName);
-
   return (
     <SafeAreaView className="flex-1 bg-black">
       <ScrollView>

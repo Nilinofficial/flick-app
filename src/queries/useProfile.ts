@@ -6,11 +6,9 @@ import { BASE_URL } from "../contants";
 export const fetchProfile = async () => {
   const token = await AsyncStorage.getItem("@token");
 
-  const profileData = await axios.get(`${BASE_URL}/profile`, {
+  return await axios.get(`${BASE_URL}/profile`, {
     headers: { Authorization: `Bearer ${token}` },
   });
-
-  return profileData;
 };
 
 export const useProfile = () => {

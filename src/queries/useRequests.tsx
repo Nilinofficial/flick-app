@@ -68,7 +68,7 @@ export const useGetFriendRequests = () => {
   return useQuery({
     queryFn: getRequests,
     queryKey: ["getFriendRequests"],
-    refetchInterval: 1000,
+    refetchInterval: 5000,
   });
 };
 
@@ -88,7 +88,7 @@ export const useGetFriendSuggestions = () => {
   return useQuery({
     queryKey: ["getFriendSuggestions"],
     queryFn: getFriendSuggestions,
-    staleTime: 0,
+    refetchInterval: 5000,
   });
 };
 
