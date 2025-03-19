@@ -28,7 +28,7 @@ const PostCard = ({ username, postUrl, caption }: PostProps) => {
   };
 
   return (
-    <View className="w-full mt-4 pt-3 flex flex-col  overflow-hidden">
+    <View className="w-full mt-4 pt-3 flex flex-col  overflow-hidden ">
       <View className="flex flex-row justify-between items-center w-full">
         <View className="flex flex-row items-center gap-2">
           <Image
@@ -38,7 +38,7 @@ const PostCard = ({ username, postUrl, caption }: PostProps) => {
             className="w-10 h-10 rounded-full bg-orange-800"
           />
           <View className="flex flex-col">
-            <Text className="text-white">{username}</Text>
+            <Text className="text-primaryText">{username}</Text>
             <Text className="text-gray-500 text-sm">Some Place, Erumely</Text>
           </View>
         </View>
@@ -47,8 +47,7 @@ const PostCard = ({ username, postUrl, caption }: PostProps) => {
           <MaterialIcons name="more-horiz" size={28} color="white" />
         </View>
       </View>
-
-      <View className="mt-4 bg-slate-500 rounded-md">
+      <View className="mt-4 bg-slate-500 rounded-md ">
         <Image
           source={{
             uri: postUrl,
@@ -64,9 +63,11 @@ const PostCard = ({ username, postUrl, caption }: PostProps) => {
       </View>
       <PostReactions />
 
-      <View className="flex flex-row items-center gap-3 mt-2">
-        <Text className="text-white font-bold">{username}</Text>
-        <Text className="text-white">{caption}</Text>
+      <View className="flex flex-row items-start  mt-2 gap-2 w-full px-4">
+        <Text className="text-primaryText">
+          <Text className="font-bold">{username}</Text>{" "}
+          <Text className="ml-2">{caption}</Text>
+        </Text>
       </View>
     </View>
   );

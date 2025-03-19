@@ -9,7 +9,7 @@ const Header = () => {
       <View className="flex flex-row">
         <Ionicons name="settings-outline" size={24} color="white" />
       </View>
-      <Text className=" text-white font-bold text-2xl italic">Flick</Text>
+      <Text className=" text-primaryText font-bold text-2xl italic">Flick</Text>
 
       <View className="flex flex-row">
         <AntDesign

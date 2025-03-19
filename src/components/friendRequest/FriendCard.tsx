@@ -45,17 +45,19 @@ const FriendCard = ({
       <View className="items-start">
         <View className="flex flex-row">
           <Text
-            className="text-center text-white font-bold"
+            className="text-center text-primaryText font-bold"
             numberOfLines={1}
             ellipsizeMode="tail"
             style={{ maxWidth: 120, flexShrink: 1 }}
           >
             {`${firstName} ${lastName}`}
           </Text>
-          {!isSuggestion && <Text className="text-white"> wants</Text>}
+          {!isSuggestion && <Text className="text-primaryText"> wants</Text>}
         </View>
 
-        {!isSuggestion && <Text className="text-white">to be your friend</Text>}
+        {!isSuggestion && (
+          <Text className="text-primaryText">to be your friend</Text>
+        )}
       </View>
 
       <View className="flex flex-col items-center justify-center gap-3">
@@ -65,7 +67,7 @@ const FriendCard = ({
           }
           className="bg-green-700 p-1 rounded-full px-4"
         >
-          <Text className="text-white font-bold">
+          <Text className="text-primaryText font-bold">
             {isSuggestion ? "CONNECT" : "ACCEPT"}
           </Text>
         </Pressable>
@@ -76,7 +78,7 @@ const FriendCard = ({
           }
           className="bg-red-700 p-1 px-4 rounded-full"
         >
-          <Text className="text-white font-bold">
+          <Text className="text-primaryText font-bold">
             {isSuggestion ? "IGNORE" : "REJECT"}
           </Text>
         </Pressable>

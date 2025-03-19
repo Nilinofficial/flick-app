@@ -19,7 +19,7 @@ const SuggestionsCard = ({ firstName, lastName, profilePicUrl }: any) => {
       <View className="items-start">
         <View className="flex flex-row">
           <Text
-            className="text-center text-white font-bold "
+            className="text-center text-primaryText font-bold "
             numberOfLines={1}
             ellipsizeMode="tail"
             style={{ maxWidth: 120, flexShrink: 1 }}
@@ -31,11 +31,11 @@ const SuggestionsCard = ({ firstName, lastName, profilePicUrl }: any) => {
 
       <View className="flex flex-col items-center justify-center  gap-3">
         <Pressable className="bg-green-700 p-1 rounded-full px-4 ">
-          <Text className="text-white font-bold">ADD FRIEND</Text>
+          <Text className="text-primaryText font-bold">ADD FRIEND</Text>
         </Pressable>
 
         <Pressable className="bg-red-700 p-1 px-4 rounded-full ">
-          <Text className="text-white font-bold">IGNORE</Text>
+          <Text className="text-primaryText font-bold">IGNORE</Text>
         </Pressable>
       </View>
     </View>

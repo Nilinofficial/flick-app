@@ -9,7 +9,7 @@ interface FLHeaderProps {
 const FLHeader = ({ title, icon }: FLHeaderProps) => {
   return (
     <View className="flex flex-row w-full items-center justify-between">
-      <Text className="text-white text-2xl font-bold">{title}</Text>
+      <Text className="text-primaryText text-2xl font-bold">{title}</Text>
 
       <View>{icon}</View>
     </View>

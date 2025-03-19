@@ -124,7 +124,7 @@ const index = () => {
             disabled={isPending}
             className="w-full bg-blue-600 py-5 rounded-xl mt-3  flex flex-row justify-center items-center "
           >
-            <Text className="text-white text-center font-bold text-xl ">
+            <Text className="text-primaryText text-center font-bold text-xl ">
               {!isPending ? "Register" : "Registering"}
             </Text>
 
