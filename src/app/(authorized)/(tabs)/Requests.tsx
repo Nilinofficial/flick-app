@@ -6,7 +6,6 @@ import {
   useGetFriendRequests,
   useGetFriendSuggestions,
 } from "../../../queries/useRequests";
-import { useAuthSession } from "../../../providers/AuthProvider";
 
 interface FriendRequestProps {
   _id: string;

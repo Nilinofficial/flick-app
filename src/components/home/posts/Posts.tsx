@@ -38,6 +38,7 @@ const Posts = ({ posts }: PostsProps) => {
             username={post.userId.firstName}
             postUrl={post.postUrl}
             caption={post.caption}
+            profilePicUrl={post.userId.profilePicUrl}
           />
         ))}
     </View>

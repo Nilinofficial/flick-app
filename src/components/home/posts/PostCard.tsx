@@ -14,9 +14,10 @@ interface PostProps {
   username: string;
   postUrl: string;
   caption: string;
+  profilePicUrl: string;
 }
 
-const PostCard = ({ username, postUrl, caption }: PostProps) => {
+const PostCard = ({ username, postUrl, caption, profilePicUrl }: PostProps) => {
   const screenWidth = Dimensions.get("window").width;
   const [imageLoaded, setImageLoaded] = useState(false);
   const [imageRatio, setImageRatio] = useState(1);
@@ -33,7 +34,9 @@ const PostCard = ({ username, postUrl, caption }: PostProps) => {
         <View className="flex flex-row items-center gap-2">
           <Image
             source={{
-              uri: "https://i.ibb.co/kkP7PWc/its-me-nilin-20250306-0001.jpg",
+              uri:
+                profilePicUrl ||
+                "https://cdn-icons-png.flaticon.com/512/6596/6596121.png",
             }}
             className="w-10 h-10 rounded-full bg-orange-800"
           />

@@ -4,6 +4,7 @@ import { Image } from "expo-image";
 import MaterialIcons from "@expo/vector-icons/MaterialIcons";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import { router } from "expo-router";
+import { useAuthSession } from "../../providers/AuthProvider";
 
 const UserImage = () => {
   const handleLogout = async () => {
@@ -11,6 +12,8 @@ const UserImage = () => {
     await AsyncStorage.setItem("@user", "");
     router.push("/login");
   };
+
+  const { userDetails } = useAuthSession();
 
   return (
     <View>
@@ -22,7 +25,9 @@ const UserImage = () => {
       />
       <Image
         source={{
-          uri: "https://upload.wikimedia.org/wikipedia/commons/e/ef/Virat_Kohli_during_the_India_vs_Aus_4th_Test_match_at_Narendra_Modi_Stadium_on_09_March_2023.jpg",
+          uri:
+            userDetails.profilePicUrl ||
+            "https://cdn-icons-png.flaticon.com/512/6596/6596121.png",
         }}
         style={{
           width: 120,

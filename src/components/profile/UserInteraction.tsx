@@ -3,8 +3,8 @@ import React from "react";
 
 const UserInteraction = () => {
   return (
-    <View className="w-full items-center -mt-">
-      <View className="flex flex-row gap-4">
+    <View className="w-full items-center -mt-14">
+      {/* <View className="flex flex-row gap-4">
         <Pressable
           className="bg-blue-400 w-36 rounded-md py-3 flex items-center justify-center"
           android_ripple={{
@@ -23,7 +23,7 @@ const UserInteraction = () => {
         >
           <Text className="text-primaryText">Message</Text>
         </Pressable>
-      </View>
+      </View> */}
     </View>
   );
 };

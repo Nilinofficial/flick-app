@@ -52,11 +52,11 @@ const FriendCard = ({
           >
             {`${firstName} ${lastName}`}
           </Text>
-          {!isSuggestion && <Text className="text-primaryText"> wants</Text>}
+          {!isSuggestion && <Text className="text-primaryText">requested</Text>}
         </View>
 
         {!isSuggestion && (
-          <Text className="text-primaryText">to be your friend</Text>
+          <Text className="text-primaryText">to follow you.</Text>
         )}
       </View>
 
@@ -68,7 +68,7 @@ const FriendCard = ({
           className="bg-green-700 p-1 rounded-full px-4"
         >
           <Text className="text-primaryText font-bold">
-            {isSuggestion ? "CONNECT" : "ACCEPT"}
+            {isSuggestion ? "FOLLOW" : "ACCEPT"}
           </Text>
         </Pressable>
 

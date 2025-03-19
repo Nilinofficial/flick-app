@@ -16,6 +16,7 @@ export interface UserProfileProps {
   email: string;
   isVerified: boolean;
   userId: string;
+  profilePicUrl: string;
 }
 
 export interface AddPostData {

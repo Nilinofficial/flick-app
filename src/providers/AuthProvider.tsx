@@ -18,6 +18,7 @@ const initialUserState = {
   email: "",
   isVerified: false,
   userId: "",
+  profilePicUrl: "",
 };
 
 const initialValue: AuthContextProps = {
